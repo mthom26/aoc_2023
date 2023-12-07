@@ -35,4 +35,29 @@ fn main() {
     }
 
     println!("Part 01: {}", margin);
+
+    // Part 02
+    let mut single_race_time = "".to_owned();
+    times
+        .trim()
+        .split_whitespace()
+        .for_each(|s| single_race_time.push_str(s));
+    let single_race_time = single_race_time.parse::<usize>().unwrap();
+
+    let mut single_race_distance = "".to_owned();
+    distances
+        .trim()
+        .split_whitespace()
+        .for_each(|s| single_race_distance.push_str(s));
+    let single_race_distance = single_race_distance.parse::<usize>().unwrap();
+
+    let mut won_races = 0;
+    for s in 1..single_race_time {
+        let d = s * (single_race_time - s);
+        if d > single_race_distance {
+            won_races += 1;
+        }
+    }
+
+    println!("Part 02: {}", won_races);
 }
